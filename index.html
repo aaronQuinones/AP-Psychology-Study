@@ -84,20 +84,164 @@
 
             <div class="brain-container">
 
-                <!-- Brain illustration will go here -->
-                <div class="brain-placeholder">
+                <!-- Interactive Brain Model -->
+<div class="brain-model">
 
-                    <div class="brain-icon">
-                        🧠
-                    </div>
+    <div class="brain-graphic">
 
-                    <h3>Interactive Brain Model</h3>
+        <svg viewBox="0 0 700 500" class="brain-svg"
+             xmlns="http://www.w3.org/2000/svg">
 
-                    <p>
-                        Our interactive brain will be added here next.
-                    </p>
+            <!-- Brain outline -->
+            <path
+                class="brain-outline"
+                d="M120 260
+                   C80 220 95 145 155 125
+                   C145 65 220 35 270 75
+                   C320 25 390 45 410 90
+                   C480 65 545 105 535 165
+                   C595 180 610 245 570 280
+                   C590 335 545 380 495 365
+                   C460 425 380 430 345 385
+                   C290 430 210 405 205 350
+                   C145 350 105 315 120 260 Z"
+            />
 
-                </div>
+            <!-- Frontal Lobe -->
+            <path
+                id="frontal"
+                class="brain-region"
+                d="M120 260
+                   C80 220 95 145 155 125
+                   C145 65 220 35 270 75
+                   C300 105 300 180 285 235
+                   L205 285
+                   C175 285 145 275 120 260 Z"
+                onclick="selectBrainPart('frontal')"
+            />
+
+            <!-- Parietal Lobe -->
+            <path
+                id="parietal"
+                class="brain-region"
+                d="M270 75
+                   C320 25 390 45 410 90
+                   C430 125 425 190 410 235
+                   L285 235
+                   C300 180 300 105 270 75 Z"
+                onclick="selectBrainPart('parietal')"
+            />
+
+            <!-- Occipital Lobe -->
+            <path
+                id="occipital"
+                class="brain-region"
+                d="M410 90
+                   C480 65 545 105 535 165
+                   C575 180 590 220 570 255
+                   L470 255
+                   C450 220 430 180 410 90 Z"
+                onclick="selectBrainPart('occipital')"
+            />
+
+            <!-- Temporal Lobe -->
+            <path
+                id="temporal"
+                class="brain-region"
+                d="M205 285
+                   L285 235
+                   L410 235
+                   C430 275 450 305 470 330
+                   C430 360 375 355 345 330
+                   C300 365 235 350 205 350
+                   C210 330 210 305 205 285 Z"
+                onclick="selectBrainPart('temporal')"
+            />
+
+            <!-- Cerebellum -->
+            <path
+                id="cerebellum"
+                class="brain-region"
+                d="M470 255
+                   C530 245 585 270 590 315
+                   C595 350 545 380 495 365
+                   C475 350 465 330 470 255 Z"
+                onclick="selectBrainPart('cerebellum')"
+            />
+
+            <!-- Brainstem -->
+            <path
+                id="brainstem"
+                class="brain-region"
+                d="M410 300
+                   C435 305 455 315 465 335
+                   L455 410
+                   C445 435 410 435 400 410
+                   L395 340
+                   C395 325 400 310 410 300 Z"
+                onclick="selectBrainPart('brainstem')"
+            />
+
+            <!-- Thalamus -->
+            <ellipse
+                id="thalamus"
+                class="brain-region"
+                cx="350"
+                cy="245"
+                rx="32"
+                ry="25"
+                onclick="selectBrainPart('thalamus')"
+            />
+
+            <!-- Hypothalamus -->
+            <ellipse
+                id="hypothalamus"
+                class="brain-region"
+                cx="350"
+                cy="285"
+                rx="25"
+                ry="18"
+                onclick="selectBrainPart('hypothalamus')"
+            />
+
+        </svg>
+
+        <p class="brain-instruction">
+            Click a brain region to explore it.
+        </p>
+
+    </div>
+
+
+    <!-- Information Panel -->
+    <div class="info-panel" id="brain-info">
+
+        <p class="small-title">BRAIN STRUCTURE</p>
+
+        <h2 id="brain-name">Select a structure</h2>
+
+        <div class="info-content">
+
+            <h4>Function</h4>
+            <p id="brain-function">
+                Click a region of the brain to learn about its function.
+            </p>
+
+            <h4>AP Psychology</h4>
+            <p id="brain-psychology">
+                Information about the selected structure will appear here.
+            </p>
+
+            <h4>Remember It</h4>
+            <p id="brain-remember">
+                Choose a structure to see a memory trick.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
 
 
                 <!-- Information panel -->
