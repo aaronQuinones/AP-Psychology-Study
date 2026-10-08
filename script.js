@@ -1,92 +1,408 @@
 // =========================
 // AP PSYCHOLOGY STUDY HUB
-// Main JavaScript
+// Brain Explorer
 // =========================
 
 console.log("AP Psychology Study Hub loaded!");
 
 
 // =========================
-// BRAIN MODEL
+// BRAIN DATA
 // =========================
-
-// Brain information will go here.
-// We will replace this section with the
-// interactive brain model next.
 
 const brainData = {
 
     frontal: {
         name: "Frontal Lobe",
-        function: "Planning, decision-making, personality, and voluntary movement.",
-        psychology: "The frontal lobe is especially important for executive functions such as planning, judgment, and impulse control.",
-        remember: "Think: FRONTAL = FUTURE planning."
+        shortName: "Frontal",
+        function:
+            "Planning, decision-making, personality, impulse control, and voluntary movement.",
+        psychology:
+            "The frontal lobe contains areas involved in executive functions such as planning, judgment, decision-making, and controlling voluntary movement.",
+        remember:
+            "Think: FRONTAL = FUTURE planning."
     },
 
     parietal: {
         name: "Parietal Lobe",
-        function: "Processes touch and helps with spatial awareness.",
-        psychology: "The parietal lobe helps the brain interpret sensory information such as touch, pressure, and temperature.",
-        remember: "Think: PARIETAL = PHYSICAL sensation."
+        shortName: "Parietal",
+        function:
+            "Processes touch and helps with spatial awareness and body position.",
+        psychology:
+            "The parietal lobe processes somatosensory information such as touch, pressure, pain, and temperature.",
+        remember:
+            "Think: PARIETAL = PHYSICAL sensation."
     },
 
     temporal: {
         name: "Temporal Lobe",
-        function: "Important for hearing, language, and memory.",
-        psychology: "The temporal lobe helps process auditory information and plays an important role in memory and language.",
-        remember: "Think: TEMPORAL = TALKING and TUNES."
+        shortName: "Temporal",
+        function:
+            "Important for hearing, language, memory, and recognizing information.",
+        psychology:
+            "The temporal lobe processes auditory information and contains areas important for language and memory.",
+        remember:
+            "Think: TEMPORAL = TALKING and TUNES."
     },
 
     occipital: {
         name: "Occipital Lobe",
-        function: "Processes visual information.",
-        psychology: "The occipital lobe is the primary region responsible for processing information received from the eyes.",
-        remember: "Think: OCCIPITAL = OPTICAL."
+        shortName: "Occipital",
+        function:
+            "Processes and interprets visual information.",
+        psychology:
+            "The occipital lobe contains the primary visual cortex and plays a major role in processing information from the eyes.",
+        remember:
+            "Think: OCCIPITAL = OPTICAL."
     },
 
     cerebellum: {
         name: "Cerebellum",
-        function: "Helps control balance, coordination, and fine motor skills.",
-        psychology: "The cerebellum coordinates movement and contributes to motor learning.",
-        remember: "Think: CEREBELLUM = COORDINATION."
+        shortName: "Cerebellum",
+        function:
+            "Helps control balance, coordination, precision, and motor learning.",
+        psychology:
+            "The cerebellum coordinates voluntary movement and contributes to balance and motor learning.",
+        remember:
+            "Think: CEREBELLUM = COORDINATION."
     },
 
     brainstem: {
         name: "Brainstem",
-        function: "Controls many automatic functions such as breathing and heart rate.",
-        psychology: "The brainstem helps regulate basic survival functions that occur automatically.",
-        remember: "Think: BRAINSTEM = BASIC survival."
+        shortName: "Brainstem",
+        function:
+            "Controls many automatic survival functions, including breathing and heart rate.",
+        psychology:
+            "The brainstem connects the brain with the spinal cord and helps regulate basic automatic functions necessary for survival.",
+        remember:
+            "Think: BRAINSTEM = BASIC survival."
     },
 
     thalamus: {
         name: "Thalamus",
-        function: "Relays most sensory information to the appropriate areas of the brain.",
-        psychology: "The thalamus acts as an important relay station for sensory information.",
-        remember: "Think: THALAMUS = TRAFFIC controller."
+        shortName: "Thalamus",
+        function:
+            "Relays most sensory information to the appropriate areas of the brain.",
+        psychology:
+            "The thalamus acts as an important relay station for sensory information traveling to the cerebral cortex.",
+        remember:
+            "Think: THALAMUS = TRAFFIC controller."
     },
 
     hypothalamus: {
         name: "Hypothalamus",
-        function: "Helps regulate hunger, thirst, temperature, and hormones.",
-        psychology: "The hypothalamus helps maintain homeostasis and connects the nervous and endocrine systems.",
-        remember: "Think: HYPOTHALAMUS = HOMEostasis."
+        shortName: "Hypothalamus",
+        function:
+            "Helps regulate hunger, thirst, temperature, hormones, and other aspects of homeostasis.",
+        psychology:
+            "The hypothalamus helps maintain homeostasis and connects the nervous system with the endocrine system through its relationship with the pituitary gland.",
+        remember:
+            "Think: HYPOTHALAMUS = HOMEostasis."
     }
 
 };
 
 
 // =========================
-// FUTURE FEATURES
+// BRAIN ORDER
 // =========================
 
-// We will eventually add:
-//
-// • Interactive SVG brain
-// • Unit navigation
-// • Flashcards
-// • Practice questions
-// • Quiz scoring
-// • Progress tracking
-// • AP exam review
-//
-// This file will control those features.
+const brainParts = [
+    "frontal",
+    "parietal",
+    "temporal",
+    "occipital",
+    "cerebellum",
+    "brainstem",
+    "thalamus",
+    "hypothalamus"
+];
+
+let currentBrainIndex = 0;
+
+
+// =========================
+// DOM ELEMENTS
+// =========================
+
+const brainSlider = document.getElementById("brain-slider");
+const brainPrev = document.getElementById("brain-prev");
+const brainNext = document.getElementById("brain-next");
+
+const brainName = document.getElementById("brain-name");
+const brainFunction = document.getElementById("brain-function");
+const brainPsychology = document.getElementById("brain-psychology");
+const brainRemember = document.getElementById("brain-remember");
+
+const brainCounter = document.getElementById("brain-counter");
+const brainNumber = document.getElementById("brain-number");
+const brainCurrentLabel = document.getElementById("brain-current-label");
+
+const brainRegions = document.querySelectorAll(".brain-region");
+
+
+// =========================
+// SELECT BRAIN PART
+// =========================
+
+function selectBrainPart(part) {
+
+    const index = brainParts.indexOf(part);
+
+    if (index === -1) {
+        return;
+    }
+
+    currentBrainIndex = index;
+
+    updateBrain();
+}
+
+
+// =========================
+// UPDATE BRAIN
+// =========================
+
+function updateBrain() {
+
+    const part = brainParts[currentBrainIndex];
+    const data = brainData[part];
+
+    if (!data) {
+        return;
+    }
+
+
+    // Update information panel
+
+    brainName.textContent = data.name;
+
+    brainFunction.textContent = data.function;
+
+    brainPsychology.textContent = data.psychology;
+
+    brainRemember.textContent = data.remember;
+
+
+    // Update counter
+
+    const number = currentBrainIndex + 1;
+
+    brainCounter.textContent = `${number} / ${brainParts.length}`;
+
+    brainNumber.textContent =
+        String(number).padStart(2, "0");
+
+    brainCurrentLabel.textContent = data.name;
+
+
+    // Update slider
+
+    brainSlider.value = currentBrainIndex;
+
+
+    // Remove previous selection
+
+    brainRegions.forEach(region => {
+
+        region.classList.remove("selected");
+
+        region.setAttribute("aria-pressed", "false");
+
+    });
+
+
+    // Select current region
+
+    const selectedRegion =
+        document.getElementById(part);
+
+    if (selectedRegion) {
+
+        selectedRegion.classList.add("selected");
+
+        selectedRegion.setAttribute("aria-pressed", "true");
+
+    }
+
+
+    // Update button states
+
+    brainPrev.disabled = currentBrainIndex === 0;
+
+    brainNext.disabled =
+        currentBrainIndex === brainParts.length - 1;
+
+
+    // Add subtle visual rotation
+
+    const brain3D =
+        document.querySelector(".brain-3d");
+
+    if (brain3D) {
+
+        const rotation =
+            -8 + (currentBrainIndex * 2.3);
+
+        brain3D.style.setProperty(
+            "--brain-rotation",
+            `${rotation}deg`
+        );
+
+    }
+
+}
+
+
+// =========================
+// BRAIN REGION CLICK
+// =========================
+
+brainRegions.forEach(region => {
+
+    region.addEventListener("click", () => {
+
+        const part =
+            region.dataset.brainPart;
+
+        selectBrainPart(part);
+
+    });
+
+
+    // Keyboard accessibility
+
+    region.addEventListener("keydown", event => {
+
+        if (
+            event.key === "Enter" ||
+            event.key === " "
+        ) {
+
+            event.preventDefault();
+
+            const part =
+                region.dataset.brainPart;
+
+            selectBrainPart(part);
+
+        }
+
+    });
+
+});
+
+
+// =========================
+// SLIDER
+// =========================
+
+brainSlider.addEventListener("input", () => {
+
+    const value =
+        Number(brainSlider.value);
+
+    if (
+        Number.isInteger(value) &&
+        value >= 0 &&
+        value < brainParts.length
+    ) {
+
+        currentBrainIndex = value;
+
+        updateBrain();
+
+    }
+
+});
+
+
+// =========================
+// PREVIOUS BUTTON
+// =========================
+
+brainPrev.addEventListener("click", () => {
+
+    if (currentBrainIndex > 0) {
+
+        currentBrainIndex--;
+
+        updateBrain();
+
+    }
+
+});
+
+
+// =========================
+// NEXT BUTTON
+// =========================
+
+brainNext.addEventListener("click", () => {
+
+    if (
+        currentBrainIndex <
+        brainParts.length - 1
+    ) {
+
+        currentBrainIndex++;
+
+        updateBrain();
+
+    }
+
+});
+
+
+// =========================
+// KEYBOARD NAVIGATION
+// =========================
+
+document.addEventListener("keydown", event => {
+
+    // Don't hijack keyboard controls while typing
+
+    if (
+        event.target.tagName === "INPUT" ||
+        event.target.tagName === "TEXTAREA"
+    ) {
+        return;
+    }
+
+
+    if (event.key === "ArrowLeft") {
+
+        if (currentBrainIndex > 0) {
+
+            currentBrainIndex--;
+
+            updateBrain();
+
+        }
+
+    }
+
+
+    if (event.key === "ArrowRight") {
+
+        if (
+            currentBrainIndex <
+            brainParts.length - 1
+        ) {
+
+            currentBrainIndex++;
+
+            updateBrain();
+
+        }
+
+    }
+
+});
+
+
+// =========================
+// INITIALIZE
+// =========================
+
+updateBrain();
