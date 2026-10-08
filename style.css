@@ -491,3 +491,266 @@ footer p {
         min-height: auto;
     }
 }
+/* =========================
+   BRAIN EXPLORER CONTROLS
+   ========================= */
+
+.brain-stage {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1200px;
+}
+
+
+/* =========================
+   3D BRAIN EFFECT
+   ========================= */
+
+.brain-3d {
+    width: 100%;
+    transform:
+        rotateX(3deg)
+        rotateY(var(--brain-rotation, -8deg));
+    transform-style: preserve-3d;
+
+    transition:
+        transform 0.6s ease;
+}
+
+.brain-svg {
+    filter:
+        drop-shadow(0 20px 25px rgba(0, 0, 0, 0.35));
+
+    transform-style: preserve-3d;
+}
+
+
+/* =========================
+   BRAIN CONTROLS
+   ========================= */
+
+.brain-controls {
+    width: 100%;
+    max-width: 650px;
+
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+
+.brain-control-button {
+    width: 48px;
+    height: 48px;
+
+    flex-shrink: 0;
+
+    border: 1px solid #3b4260;
+    border-radius: 12px;
+
+    background: #171f38;
+    color: #ffffff;
+
+    font-size: 1.4rem;
+    font-weight: bold;
+
+    cursor: pointer;
+
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        border-color 0.2s ease;
+}
+
+
+.brain-control-button:hover:not(:disabled) {
+    background: #7654d9;
+    border-color: #a78bfa;
+
+    transform: translateY(-2px);
+}
+
+
+.brain-control-button:disabled {
+    opacity: 0.35;
+    cursor: not-allowed;
+}
+
+
+/* =========================
+   SLIDER
+   ========================= */
+
+.brain-slider-container {
+    flex: 1;
+    min-width: 0;
+}
+
+
+.brain-progress {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 15px;
+
+    margin-bottom: 10px;
+
+    font-size: 0.85rem;
+}
+
+
+#brain-counter {
+    color: #a78bfa;
+    font-weight: bold;
+}
+
+
+#brain-current-label {
+    color: #c8cde0;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+
+#brain-slider {
+    width: 100%;
+
+    accent-color: #8b5cf6;
+
+    cursor: pointer;
+}
+
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+
+    margin-top: 5px;
+
+    color: #717995;
+
+    font-size: 0.7rem;
+}
+
+
+/* =========================
+   INFO PANEL
+   ========================= */
+
+#brain-info {
+    min-height: 450px;
+}
+
+
+.brain-number {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+
+    margin-top: -5px;
+    margin-bottom: 5px;
+
+    color: #717995;
+
+    font-size: 0.8rem;
+}
+
+
+#brain-number {
+    color: #a78bfa;
+
+    font-size: 2.2rem;
+    font-weight: bold;
+}
+
+
+.memory-tip {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+
+    margin-top: 8px;
+    padding: 15px;
+
+    border: 1px solid #332d59;
+    border-radius: 12px;
+
+    background: #18152d;
+}
+
+
+.memory-tip span {
+    font-size: 1.2rem;
+}
+
+
+.memory-tip p {
+    margin: 0;
+}
+
+
+/* =========================
+   FOCUS STATES
+   ========================= */
+
+.brain-region:focus {
+    outline: none;
+
+    stroke: #ffffff;
+    stroke-width: 5;
+}
+
+
+.brain-control-button:focus-visible,
+#brain-slider:focus-visible {
+    outline: 2px solid #a78bfa;
+    outline-offset: 3px;
+}
+
+
+/* =========================
+   REDUCED MOTION
+   ========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    .brain-3d,
+    .brain-region,
+    .brain-control-button {
+        transition: none;
+    }
+
+}
+
+
+/* =========================
+   MOBILE BRAIN CONTROLS
+   ========================= */
+
+@media (max-width: 600px) {
+
+    .brain-controls {
+        gap: 8px;
+    }
+
+    .brain-control-button {
+        width: 44px;
+        height: 44px;
+    }
+
+    .brain-progress {
+        font-size: 0.75rem;
+    }
+
+    #brain-number {
+        font-size: 1.8rem;
+    }
+
+}
