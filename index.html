@@ -65,202 +65,277 @@
         </section>
 
 
-        <!-- Brain Model -->
-        <section id="brain" class="section">
+       <!-- Brain Model -->
+<section id="brain" class="section">
 
-            <div class="section-title">
+    <div class="section-title">
+        <p class="small-title">INTERACTIVE MODEL</p>
 
-                <p class="small-title">INTERACTIVE MODEL</p>
+        <h2>The Human Brain</h2>
 
-                <h2>The Human Brain</h2>
-
-                <p>
-                    Click a brain structure to learn what it does
-                    and why it matters in psychology.
-                </p>
-
-            </div>
-
-
-            <div class="brain-container">
-
-                <!-- Interactive Brain Model -->
-<div class="brain-model">
-
-    <div class="brain-graphic">
-
-        <svg viewBox="0 0 700 500" class="brain-svg"
-             xmlns="http://www.w3.org/2000/svg">
-
-            <!-- Brain outline -->
-            <path
-                class="brain-outline"
-                d="M120 260
-                   C80 220 95 145 155 125
-                   C145 65 220 35 270 75
-                   C320 25 390 45 410 90
-                   C480 65 545 105 535 165
-                   C595 180 610 245 570 280
-                   C590 335 545 380 495 365
-                   C460 425 380 430 345 385
-                   C290 430 210 405 205 350
-                   C145 350 105 315 120 260 Z"
-            />
-
-            <!-- Frontal Lobe -->
-            <path
-                id="frontal"
-                class="brain-region"
-                d="M120 260
-                   C80 220 95 145 155 125
-                   C145 65 220 35 270 75
-                   C300 105 300 180 285 235
-                   L205 285
-                   C175 285 145 275 120 260 Z"
-                onclick="selectBrainPart('frontal')"
-            />
-
-            <!-- Parietal Lobe -->
-            <path
-                id="parietal"
-                class="brain-region"
-                d="M270 75
-                   C320 25 390 45 410 90
-                   C430 125 425 190 410 235
-                   L285 235
-                   C300 180 300 105 270 75 Z"
-                onclick="selectBrainPart('parietal')"
-            />
-
-            <!-- Occipital Lobe -->
-            <path
-                id="occipital"
-                class="brain-region"
-                d="M410 90
-                   C480 65 545 105 535 165
-                   C575 180 590 220 570 255
-                   L470 255
-                   C450 220 430 180 410 90 Z"
-                onclick="selectBrainPart('occipital')"
-            />
-
-            <!-- Temporal Lobe -->
-            <path
-                id="temporal"
-                class="brain-region"
-                d="M205 285
-                   L285 235
-                   L410 235
-                   C430 275 450 305 470 330
-                   C430 360 375 355 345 330
-                   C300 365 235 350 205 350
-                   C210 330 210 305 205 285 Z"
-                onclick="selectBrainPart('temporal')"
-            />
-
-            <!-- Cerebellum -->
-            <path
-                id="cerebellum"
-                class="brain-region"
-                d="M470 255
-                   C530 245 585 270 590 315
-                   C595 350 545 380 495 365
-                   C475 350 465 330 470 255 Z"
-                onclick="selectBrainPart('cerebellum')"
-            />
-
-            <!-- Brainstem -->
-            <path
-                id="brainstem"
-                class="brain-region"
-                d="M410 300
-                   C435 305 455 315 465 335
-                   L455 410
-                   C445 435 410 435 400 410
-                   L395 340
-                   C395 325 400 310 410 300 Z"
-                onclick="selectBrainPart('brainstem')"
-            />
-
-            <!-- Thalamus -->
-            <ellipse
-                id="thalamus"
-                class="brain-region"
-                cx="350"
-                cy="245"
-                rx="32"
-                ry="25"
-                onclick="selectBrainPart('thalamus')"
-            />
-
-            <!-- Hypothalamus -->
-            <ellipse
-                id="hypothalamus"
-                class="brain-region"
-                cx="350"
-                cy="285"
-                rx="25"
-                ry="18"
-                onclick="selectBrainPart('hypothalamus')"
-            />
-
-        </svg>
-
-        <p class="brain-instruction">
-            Click a brain region to explore it.
+        <p>
+            Explore eight major brain structures and learn
+            what they do in AP Psychology.
         </p>
-
     </div>
 
+    <div class="brain-model">
 
-    <!-- Information Panel -->
-    <div class="info-panel" id="brain-info">
+        <!-- Brain visualization -->
+        <div class="brain-graphic">
 
-        <p class="small-title">BRAIN STRUCTURE</p>
+            <div class="brain-stage">
 
-        <h2 id="brain-name">Select a structure</h2>
+                <div class="brain-3d">
 
-        <div class="info-content">
+                    <svg
+                        viewBox="0 0 700 500"
+                        class="brain-svg"
+                        xmlns="http://www.w3.org/2000/svg"
+                        aria-label="Interactive diagram of the human brain"
+                    >
 
-            <h4>Function</h4>
-            <p id="brain-function">
-                Click a region of the brain to learn about its function.
-            </p>
+                        <!-- Brain outline -->
+                        <path
+                            class="brain-outline"
+                            d="M120 260
+                               C80 220 95 145 155 125
+                               C145 65 220 35 270 75
+                               C320 25 390 45 410 90
+                               C480 65 545 105 535 165
+                               C595 180 610 245 570 280
+                               C590 335 545 380 495 365
+                               C460 425 380 430 345 385
+                               C290 430 210 405 205 350
+                               C145 350 105 315 120 260 Z"
+                        />
 
-            <h4>AP Psychology</h4>
-            <p id="brain-psychology">
-                Information about the selected structure will appear here.
-            </p>
+                        <!-- Frontal Lobe -->
+                        <path
+                            id="frontal"
+                            class="brain-region"
+                            d="M120 260
+                               C80 220 95 145 155 125
+                               C145 65 220 35 270 75
+                               C300 105 300 180 285 235
+                               L205 285
+                               C175 285 145 275 120 260 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Frontal lobe"
+                            data-brain-part="frontal"
+                        />
 
-            <h4>Remember It</h4>
-            <p id="brain-remember">
-                Choose a structure to see a memory trick.
-            </p>
+                        <!-- Parietal Lobe -->
+                        <path
+                            id="parietal"
+                            class="brain-region"
+                            d="M270 75
+                               C320 25 390 45 410 90
+                               C430 125 425 190 410 235
+                               L285 235
+                               C300 180 300 105 270 75 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Parietal lobe"
+                            data-brain-part="parietal"
+                        />
 
-        </div>
+                        <!-- Occipital Lobe -->
+                        <path
+                            id="occipital"
+                            class="brain-region"
+                            d="M410 90
+                               C480 65 545 105 535 165
+                               C575 180 590 220 570 255
+                               L470 255
+                               C450 220 430 180 410 90 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Occipital lobe"
+                            data-brain-part="occipital"
+                        />
 
-    </div>
+                        <!-- Temporal Lobe -->
+                        <path
+                            id="temporal"
+                            class="brain-region"
+                            d="M205 285
+                               L285 235
+                               L410 235
+                               C430 275 450 305 470 330
+                               C430 360 375 355 345 330
+                               C300 365 235 350 205 350
+                               C210 330 210 305 205 285 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Temporal lobe"
+                            data-brain-part="temporal"
+                        />
 
-</div>
+                        <!-- Cerebellum -->
+                        <path
+                            id="cerebellum"
+                            class="brain-region"
+                            d="M470 255
+                               C530 245 585 270 590 315
+                               C595 350 545 380 495 365
+                               C475 350 465 330 470 255 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Cerebellum"
+                            data-brain-part="cerebellum"
+                        />
 
+                        <!-- Brainstem -->
+                        <path
+                            id="brainstem"
+                            class="brain-region"
+                            d="M410 300
+                               C435 305 455 315 465 335
+                               L455 410
+                               C445 435 410 435 400 410
+                               L395 340
+                               C395 325 400 310 410 300 Z"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Brainstem"
+                            data-brain-part="brainstem"
+                        />
 
-                <!-- Information panel -->
-                <div class="info-panel">
+                        <!-- Thalamus -->
+                        <ellipse
+                            id="thalamus"
+                            class="brain-region"
+                            cx="350"
+                            cy="245"
+                            rx="32"
+                            ry="25"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Thalamus"
+                            data-brain-part="thalamus"
+                        />
 
-                    <p class="small-title">BRAIN STRUCTURE</p>
+                        <!-- Hypothalamus -->
+                        <ellipse
+                            id="hypothalamus"
+                            class="brain-region"
+                            cx="350"
+                            cy="285"
+                            rx="25"
+                            ry="18"
+                            tabindex="0"
+                            role="button"
+                            aria-label="Hypothalamus"
+                            data-brain-part="hypothalamus"
+                        />
 
-                    <h2>Select a structure</h2>
-
-                    <p>
-                        Click a part of the brain to see its
-                        function and AP Psychology connections.
-                    </p>
+                    </svg>
 
                 </div>
 
             </div>
 
-        </section>
+            <p class="brain-instruction">
+                Click a region or use the controls below to explore the brain.
+            </p>
+
+            <!-- Brain navigation -->
+            <div class="brain-controls">
+
+                <button
+                    type="button"
+                    id="brain-prev"
+                    class="brain-control-button"
+                    aria-label="Previous brain structure"
+                >
+                    ←
+                </button>
+
+                <div class="brain-slider-container">
+
+                    <div class="brain-progress">
+                        <span id="brain-counter">1 / 8</span>
+                        <span id="brain-current-label">Frontal Lobe</span>
+                    </div>
+
+                    <input
+                        type="range"
+                        id="brain-slider"
+                        min="0"
+                        max="7"
+                        value="0"
+                        step="1"
+                        aria-label="Select brain structure"
+                    />
+
+                    <div class="slider-labels">
+                        <span>Frontal</span>
+                        <span>Hypothalamus</span>
+                    </div>
+
+                </div>
+
+                <button
+                    type="button"
+                    id="brain-next"
+                    class="brain-control-button"
+                    aria-label="Next brain structure"
+                >
+                    →
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- Information Panel -->
+        <div class="info-panel" id="brain-info">
+
+            <p class="small-title">BRAIN STRUCTURE</p>
+
+            <h2 id="brain-name">Frontal Lobe</h2>
+
+            <div class="brain-number">
+                <span id="brain-number">01</span>
+                <span>of 08 structures</span>
+            </div>
+
+            <div class="info-content">
+
+                <h4>Function</h4>
+
+                <p id="brain-function">
+                    Planning, decision-making, personality, and voluntary movement.
+                </p>
+
+
+                <h4>AP Psychology</h4>
+
+                <p id="brain-psychology">
+                    The frontal lobe is especially important for executive
+                    functions such as planning, judgment, and impulse control.
+                </p>
+
+
+                <h4>Remember It</h4>
+
+                <div class="memory-tip">
+                    <span>💡</span>
+                    <p id="brain-remember">
+                        Think: FRONTAL = FUTURE planning.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
 
 
         <!-- Study Units -->
