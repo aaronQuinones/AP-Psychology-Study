@@ -1,0 +1,397 @@
+/* =========================
+   AP PSYCHOLOGY STUDY HUB
+   Main Stylesheet
+   ========================= */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #0b1020;
+    color: #f5f7ff;
+    line-height: 1.6;
+}
+
+/* =========================
+   NAVIGATION
+   ========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(11, 16, 32, 0.95);
+    border-bottom: 1px solid #252c45;
+    backdrop-filter: blur(10px);
+}
+
+.navbar {
+    max-width: 1200px;
+    margin: auto;
+    padding: 18px 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+}
+
+.logo {
+    font-size: 1.2rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.nav-links {
+    display: flex;
+    gap: 22px;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+}
+
+.nav-links a {
+    color: #c8cde0;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: 0.25s;
+}
+
+.nav-links a:hover {
+    color: #9d7cff;
+}
+
+/* =========================
+   HERO
+   ========================= */
+
+.hero {
+    min-height: 85vh;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 80px 25px;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #20234b 0%,
+            #11172d 40%,
+            #0b1020 75%
+        );
+}
+
+.hero-content {
+    max-width: 850px;
+}
+
+.small-title {
+    color: #a78bfa;
+    font-size: 0.8rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 1.05;
+    margin-bottom: 25px;
+}
+
+.hero h1 span {
+    color: #a78bfa;
+}
+
+.hero-description {
+    max-width: 650px;
+    margin: auto;
+
+    color: #b9bfd4;
+    font-size: 1.1rem;
+}
+
+.hero-buttons {
+    margin-top: 35px;
+
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.primary-button,
+.secondary-button {
+    display: inline-block;
+
+    padding: 13px 25px;
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-weight: bold;
+
+    transition: 0.25s;
+}
+
+.primary-button {
+    background: #8b5cf6;
+    color: white;
+}
+
+.primary-button:hover {
+    background: #a78bfa;
+    transform: translateY(-2px);
+}
+
+.secondary-button {
+    border: 1px solid #3b4260;
+    color: #e6e8f2;
+}
+
+.secondary-button:hover {
+    background: #171d35;
+    transform: translateY(-2px);
+}
+
+/* =========================
+   SECTIONS
+   ========================= */
+
+.section {
+    max-width: 1200px;
+    margin: auto;
+    padding: 100px 25px;
+}
+
+.section-title {
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 50px;
+}
+
+.section-title h2 {
+    font-size: 2.7rem;
+    margin-bottom: 12px;
+}
+
+.section-title p:not(.small-title) {
+    color: #aeb5cb;
+}
+
+/* =========================
+   BRAIN MODEL
+   ========================= */
+
+.brain-container {
+    display: grid;
+    grid-template-columns: 1.3fr 0.7fr;
+    gap: 30px;
+    align-items: stretch;
+}
+
+.brain-placeholder {
+    min-height: 450px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    background: #11182d;
+    border: 1px solid #292f4b;
+    border-radius: 20px;
+
+    text-align: center;
+}
+
+.brain-icon {
+    font-size: 8rem;
+    margin-bottom: 20px;
+}
+
+.brain-placeholder h3 {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+}
+
+.brain-placeholder p {
+    color: #969eb8;
+}
+
+.info-panel {
+    background: #11182d;
+    border: 1px solid #292f4b;
+    border-radius: 20px;
+
+    padding: 35px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.info-panel h2 {
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.info-panel p:not(.small-title) {
+    color: #aeb5cb;
+}
+
+/* =========================
+   UNIT CARDS
+   ========================= */
+
+.unit-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 20px;
+}
+
+.unit-card {
+    background: #11182d;
+
+    border: 1px solid #292f4b;
+    border-radius: 16px;
+
+    padding: 25px;
+
+    transition: 0.25s;
+}
+
+.unit-card:hover {
+    transform: translateY(-5px);
+    border-color: #7654d9;
+    background: #151c35;
+}
+
+.unit-card span {
+    color: #8b5cf6;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+.unit-card h3 {
+    margin-top: 10px;
+    margin-bottom: 6px;
+    font-size: 1.3rem;
+}
+
+.unit-card p {
+    color: #969eb8;
+}
+
+/* =========================
+   REVIEW / QUIZ
+   ========================= */
+
+.review-section {
+    text-align: center;
+}
+
+.feature-card {
+    max-width: 650px;
+    margin: auto;
+
+    background: #11182d;
+
+    border: 1px solid #292f4b;
+    border-radius: 20px;
+
+    padding: 50px 30px;
+
+    text-align: center;
+}
+
+.feature-icon {
+    font-size: 4rem;
+    margin-bottom: 20px;
+}
+
+.feature-card h3 {
+    font-size: 1.7rem;
+    margin-bottom: 10px;
+}
+
+.feature-card p {
+    color: #aeb5cb;
+}
+
+/* =========================
+   FOOTER
+   ========================= */
+
+footer {
+    text-align: center;
+
+    padding: 60px 25px;
+
+    border-top: 1px solid #252c45;
+
+    background: #080c18;
+}
+
+footer h3 {
+    margin-bottom: 8px;
+}
+
+footer p {
+    color: #969eb8;
+}
+
+.footer-small {
+    margin-top: 15px;
+    font-size: 0.85rem;
+}
+
+/* =========================
+   MOBILE
+   ========================= */
+
+@media (max-width: 850px) {
+
+    .navbar {
+        flex-direction: column;
+    }
+
+    .nav-links {
+        justify-content: center;
+    }
+
+    .brain-container {
+        grid-template-columns: 1fr;
+    }
+
+    .unit-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 550px) {
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .unit-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .nav-links {
+        gap: 12px;
+    }
+}
