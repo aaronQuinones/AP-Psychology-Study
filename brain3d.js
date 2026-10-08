@@ -120,6 +120,24 @@ loader.load(
     console.log("Brain model loaded.");
     console.log("Mesh count:", meshCount);
     console.log("Anatomical structures:", structureNames);
+    const searchTerms = [
+  "frontal lobe",
+  "parietal lobe",
+  "temporal lobe",
+  "occipital lobe",
+  "cerebellum",
+  "brainstem",
+  "brain stem",
+  "thalamus",
+  "hypothalamus"
+];
+
+const matches = structureNames.filter((item) => {
+  const text = JSON.stringify(item).toLowerCase();
+  return searchTerms.some((term) => text.includes(term));
+});
+
+console.log("Possible brain-region matches:", matches);
 
     status.textContent = "3D brain loaded! Drag to rotate; scroll to zoom.";
     setTimeout(() => status.remove(), 5000);
