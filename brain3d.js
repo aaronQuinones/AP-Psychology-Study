@@ -71,8 +71,51 @@ loader.setDRACOLoader(dracoLoader);
 loader.load(
   "./models/brain.glb",
   (gltf) => {
-    const brain = gltf.scene;
-    scene.add(brain);
+    
+const brain = gltf.scene;
+
+// Colors for identifiable brain regions
+const regionColors = [
+  { terms: ["frontal"], color: 0xF06C6C },
+  { terms: ["parietal"], color: 0xF2C14E },
+  { terms: ["temporal"], color: 0x55B878 },
+  { terms: ["occipital"], color: 0x6699F5 },
+  { terms: ["cerebell"], color: 0xB18AE8 },
+  { terms: ["brainstem", "brain stem"], color: 0xE99A65 },
+  { terms: ["thalamus"], color: 0x49C5C9 },
+  { terms: ["hypothalamus"], color: 0xE982BD }
+];
+
+brain.traverse((object) => {
+  if (!object.isMesh) return;
+
+  const name = object.name.toLowerCase().replace(/_/g, " ");
+
+  // Avoid recoloring blood vessels and grooves.
+  if (/artery|arteries|vein|sinus|sulcus/.test(name)) return;
+
+  const region = regionColors.find((item) =>
+    item.terms.some((term) => name.includes(term))
+  );
+
+  if (!region || !object.material) return;
+
+  const materials = Array.isArray(object.material)
+    ? object.material
+    : [object.material];
+
+  const coloredMaterials = materials.map((material) => {
+    const copy = material.clone();
+    if (copy.color) copy.color.setHex(region.color);
+    return copy;
+  });
+
+  object.material = Array.isArray(object.material)
+    ? coloredMaterials
+    : coloredMaterials[0];
+});
+
+scene.add(brain);
 
     // Center the model and fit the camera to its size.
     const bounds = new THREE.Box3().setFromObject(brain);
