@@ -114,7 +114,24 @@ brain.traverse((object) => {
     ? coloredMaterials
     : coloredMaterials[0];
 });
+let coloredCount = 0;
 
+brain.traverse((object) => {
+  if (object.isMesh) {
+    const name = object.name.toLowerCase().replace(/_/g, " ");
+
+    if (
+      ["frontal", "parietal", "temporal", "occipital",
+       "cerebell", "brainstem", "brain stem",
+       "thalamus", "hypothalamus"].some(term => name.includes(term)) &&
+      !/artery|arteries|vein|sinus|sulcus/.test(name)
+    ) {
+      coloredCount++;
+    }
+  }
+});
+
+console.log("Matching brain meshes:", coloredCount);
 scene.add(brain);
 
     // Center the model and fit the camera to its size.
