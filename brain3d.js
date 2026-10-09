@@ -74,7 +74,10 @@ loader.load(
     
 const brain = gltf.scene;
 
-// Colors for identifiable brain regions
+
+ // Base color and colors for identifiable brain regions
+const baseBrainColor = 0xD9A99B;
+
 const regionColors = [
   { terms: ["frontal"], color: 0xF06C6C },
   { terms: ["parietal"], color: 0xF2C14E },
@@ -87,18 +90,18 @@ const regionColors = [
 ];
 
 brain.traverse((object) => {
-  if (!object.isMesh) return;
+  if (!object.isMesh || !object.material) return;
 
   const name = object.name.toLowerCase().replace(/_/g, " ");
 
-  // Avoid recoloring blood vessels and grooves.
-  if (/artery|arteries|vein|sinus|sulcus/.test(name)) return;
+  // Preserve the original colors of blood vessels.
+  if (/artery|arteries|vein|sinus/.test(name)) return;
 
   const region = regionColors.find((item) =>
     item.terms.some((term) => name.includes(term))
   );
 
-  if (!region || !object.material) return;
+  const color = region ? region.color : baseBrainColor;
 
   const materials = Array.isArray(object.material)
     ? object.material
@@ -106,7 +109,11 @@ brain.traverse((object) => {
 
   const coloredMaterials = materials.map((material) => {
     const copy = material.clone();
-    if (copy.color) copy.color.setHex(region.color);
+
+    if (copy.color) {
+      copy.color.setHex(color);
+    }
+
     return copy;
   });
 
