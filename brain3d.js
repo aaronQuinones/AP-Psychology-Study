@@ -111,8 +111,9 @@ brain.traverse((object) => {
     const copy = material.clone();
 
     if (copy.color) {
-      copy.color.setHex(color);
-    }
+  copy.color.setHex(color);
+  copy.needsUpdate = true;
+}
 
     return copy;
   });
