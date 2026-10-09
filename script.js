@@ -407,6 +407,7 @@ document.addEventListener("keydown", event => {
 
 updateBrain();
 
+
 /* Unit 0 notes functionality */
 document.addEventListener("DOMContentLoaded", () => {
     const unitCard = document.getElementById("unit-0-card");
@@ -414,44 +415,55 @@ document.addEventListener("DOMContentLoaded", () => {
     const notesInput = document.getElementById("unit-0-notes-input");
     const saveButton = document.getElementById("save-unit-0-notes");
     const saveStatus = document.getElementById("unit-0-save-status");
+    const backButton = document.getElementById("back-to-units");
 
-    if (!unitCard || !notesSection || !notesInput ||
-        !saveButton || !saveStatus) {
-        console.error("Unit 0 notes elements were not found.");
+    if (
+        !unitCard ||
+        !notesSection ||
+        !notesInput ||
+        !saveButton ||
+        !saveStatus ||
+        !backButton
+    ) {
+        console.error("Unit 0 workspace elements were not found.");
         return;
     }
 
     const storageKey = "ap-psychology-unit-0-notes";
 
-    // Load previously saved notes.
+    // Load saved notes from this browser.
     try {
         notesInput.value = localStorage.getItem(storageKey) || "";
     } catch (error) {
         console.error("Could not load Unit 0 notes:", error);
     }
 
-    // Open or close the notes section.
-    function toggleNotes() {
-        notesSection.hidden = !notesSection.hidden;
-        unitCard.setAttribute(
-            "aria-expanded",
-            String(!notesSection.hidden)
-        );
-
-        if (!notesSection.hidden) {
-            notesInput.focus();
-        }
+    // Open the Unit 0 workspace.
+    function openWorkspace() {
+        notesSection.hidden = false;
+        document.body.classList.add("unit-workspace-active");
+        unitCard.setAttribute("aria-expanded", "true");
+        notesInput.focus();
     }
 
-    unitCard.addEventListener("click", toggleNotes);
+    // Return to the unit cards.
+    function closeWorkspace() {
+        notesSection.hidden = true;
+        document.body.classList.remove("unit-workspace-active");
+        unitCard.setAttribute("aria-expanded", "false");
+        unitCard.focus();
+    }
 
-    // Support keyboard access.
+    unitCard.addEventListener("click", openWorkspace);
+
     unitCard.addEventListener("keydown", (event) => {
         if (event.key === "Enter" || event.key === " ") {
             event.preventDefault();
-            toggleNotes();
+            openWorkspace();
         }
     });
+
+    backButton.addEventListener("click", closeWorkspace);
 
     // Save notes in this browser.
     saveButton.addEventListener("click", () => {
