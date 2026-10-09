@@ -109,7 +109,7 @@ brain.traverse((object) => {
 
  const coloredMaterials = materials.map(() => {
   return new THREE.MeshBasicMaterial({
-    color: color,
+    color: 0xff00ff,
     side: THREE.DoubleSide
   });
 });
