@@ -107,17 +107,12 @@ brain.traverse((object) => {
     ? object.material
     : [object.material];
 
-  const coloredMaterials = materials.map((material) => {
-    const copy = material.clone();
-
-    if (copy.color) {
-  copy.color.setHex(color);
-  console.log("Applied material color:", object.name, copy.color.getHexString());
-  copy.needsUpdate = true;
-}
-
-    return copy;
+ const coloredMaterials = materials.map(() => {
+  return new THREE.MeshBasicMaterial({
+    color: color,
+    side: THREE.DoubleSide
   });
+});
 
   object.material = Array.isArray(object.material)
     ? coloredMaterials
