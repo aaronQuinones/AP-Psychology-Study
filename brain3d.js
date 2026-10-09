@@ -112,7 +112,7 @@ brain.traverse((object) => {
 
     if (copy.color) {
   copy.color.setHex(color);
-      console.log("Applied material color:", object.name, copy.color.getHexString());
+  console.log("Applied material color:", object.name, copy.color.getHexString());
   copy.needsUpdate = true;
 }
 
