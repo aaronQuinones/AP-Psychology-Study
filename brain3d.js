@@ -139,6 +139,7 @@ brain.traverse((object) => {
 });
 
 console.log("Matching brain meshes:", coloredCount);
+    
     let materialSamples = 0;
 
 brain.traverse((object) => {
@@ -150,15 +151,20 @@ brain.traverse((object) => {
     ? object.material
     : [object.material];
 
-  console.log("Brain material check:", object.name, materials.map((m) => ({
-    type: m.type,
-    color: m.color ? m.color.getHexString() : "no color property",
-    hasTexture: !!m.map,
-    vertexColors: m.vertexColors
-  })));
+  console.log(
+    "Brain material check:",
+    object.name,
+    materials.map((m) => ({
+      type: m.type,
+      color: m.color ? m.color.getHexString() : "no color property",
+      hasTexture: !!m.map,
+      vertexColors: m.vertexColors
+    }))
+  );
 
   materialSamples++;
 });
+    
 scene.add(brain);
 
     // Center the model and fit the camera to its size.
