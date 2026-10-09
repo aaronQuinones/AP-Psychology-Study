@@ -406,3 +406,62 @@ document.addEventListener("keydown", event => {
 // =========================
 
 updateBrain();
+
+/* Unit 0 notes functionality */
+document.addEventListener("DOMContentLoaded", () => {
+    const unitCard = document.getElementById("unit-0-card");
+    const notesSection = document.getElementById("unit-0-notes");
+    const notesInput = document.getElementById("unit-0-notes-input");
+    const saveButton = document.getElementById("save-unit-0-notes");
+    const saveStatus = document.getElementById("unit-0-save-status");
+
+    if (!unitCard || !notesSection || !notesInput ||
+        !saveButton || !saveStatus) {
+        console.error("Unit 0 notes elements were not found.");
+        return;
+    }
+
+    const storageKey = "ap-psychology-unit-0-notes";
+
+    // Load previously saved notes.
+    try {
+        notesInput.value = localStorage.getItem(storageKey) || "";
+    } catch (error) {
+        console.error("Could not load Unit 0 notes:", error);
+    }
+
+    // Open or close the notes section.
+    function toggleNotes() {
+        notesSection.hidden = !notesSection.hidden;
+        unitCard.setAttribute(
+            "aria-expanded",
+            String(!notesSection.hidden)
+        );
+
+        if (!notesSection.hidden) {
+            notesInput.focus();
+        }
+    }
+
+    unitCard.addEventListener("click", toggleNotes);
+
+    // Support keyboard access.
+    unitCard.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+            event.preventDefault();
+            toggleNotes();
+        }
+    });
+
+    // Save notes in this browser.
+    saveButton.addEventListener("click", () => {
+        try {
+            localStorage.setItem(storageKey, notesInput.value);
+            saveStatus.textContent = "Notes saved!";
+        } catch (error) {
+            saveStatus.textContent =
+                "Could not save notes in this browser.";
+            console.error("Could not save Unit 0 notes:", error);
+        }
+    });
+});
