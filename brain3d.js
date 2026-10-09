@@ -48,9 +48,9 @@ renderer.setSize(container.clientWidth, container.clientHeight);
 renderer.outputColorSpace = THREE.SRGBColorSpace;
 container.appendChild(renderer.domElement);
 
-scene.add(new THREE.HemisphereLight(0xffffff, 0x384052, 2));
+scene.add(new THREE.HemisphereLight(0xffffff, 0x384052, 1));
 
-const light = new THREE.DirectionalLight(0xffffff, 3);
+const light = new THREE.DirectionalLight(0xffffff, 2);
 light.position.set(4, 6, 8);
 scene.add(light);
 
